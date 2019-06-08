@@ -20,7 +20,7 @@ let dataTransmissionTaskId = null;
 
 let applicationState = APP_STATE_RUNNING;
 let config = {};
-let Noble = null;
+let noble = null;
 
 // Commons
 // ==========
@@ -108,7 +108,7 @@ const init = () => {
   log('Initialize ...');
   // Setup noble lib
   process.env.NOBLE_HCI_DEVICE_ID = config.ble.hciDeviceNum;
-  Noble = require('noble');
+  noble = require('noble');
   // Set exit handlers
   process.on('exit', () => {
     stop();
