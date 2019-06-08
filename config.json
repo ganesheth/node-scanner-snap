@@ -1,0 +1,15 @@
+{
+  "app": {
+    "sendInterval": 2000,
+    "loggingLevel": "INFO"
+  },
+  "ble": {
+    "hciDeviceNum": 1,
+    "deviceMAC": "*"
+  },
+  "mqtt": {
+    "host": "demo-mqtt.rigado.io",
+    "port": 1883,
+    "topic": "/gateway/{hostname}/sensors"
+  }
+}

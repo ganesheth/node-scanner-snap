@@ -1,0 +1,35 @@
+name: noble-scanner
+version: '1.0.0'
+summary: Scanner based on noble
+description: Scans based on configuration and dumps results to log
+confinement: strict
+grade: stable
+
+environment:
+  LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/lib"
+  LD_LIBRARY_PATH: "$SNAP_LIBRARY_PATH:$LD_LIBRARY_PATH"
+  NODE_PATH: $SNAP/lib/node_modules
+
+parts:
+  noble-scanner:
+    plugin: nodejs
+    node-engine: "8.12.0"
+    node-package-manager: yarn
+    source: .
+    build-packages:
+      - libudev-dev
+      - libbluetooth-dev
+      - python
+      - g++
+      - make
+      - bluez
+
+apps:
+  noble-scanner:
+    command: bin/noble-scanner
+    daemon: simple
+    restart-condition: always
+    plugs: &plugs [network, network-control, bluetooth-control]
+  node:
+    command: "bin/node"
+    plugs: *plugs
